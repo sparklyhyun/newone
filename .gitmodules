@@ -1,0 +1,3 @@
+[submodule "district13new"]
+	path = district13new
+	url = https://github.com/sparklyhyun/district13new.git
