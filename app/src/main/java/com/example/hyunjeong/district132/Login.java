@@ -1,6 +1,7 @@
 package com.example.hyunjeong.district132;
 
 import android.app.LoaderManager;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +15,7 @@ import android.widget.TextView;
 import android.view.View.OnClickListener;
 
 
-public class Login extends AppCompatActivity  {
+public class Login extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,9 @@ public class Login extends AppCompatActivity  {
 
         final Button bRegister = (Button) findViewById(R.id.bRegister);
         final Button bSignIn = (Button) findViewById(R.id.bSignIn);
+
+        //bSignIn.setOnClickListener((OnClickListener) this);
+
 
         /*
         bRegister.setOnClickListener(new View.OnClickListener(){
@@ -64,6 +68,17 @@ public class Login extends AppCompatActivity  {
             */
             }
 
+/*
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.bSignIn: {
+                Intent intent = new Intent(getApplicationContext(), LoggedIn.class);
+                startActivity(intent);
+                break;
+            }
+        }
+    }
+    */
 
         }
 
