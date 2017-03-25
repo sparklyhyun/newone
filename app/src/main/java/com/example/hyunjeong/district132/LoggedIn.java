@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class LoggedIn extends AppCompatActivity implements View.OnClickListener {
+public class LoggedIn extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,17 +31,16 @@ public class LoggedIn extends AppCompatActivity implements View.OnClickListener 
         String hse = hseType.getSelectedItem().toString();
         String slease = saleLease.getSelectedItem().toString();
 
-        bcreateNewPost.setOnClickListener(this);
-
-    }
-
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.SignIn: {
-                Intent intent = new Intent(getApplicationContext(), CreatePost.class);
-                startActivity(intent);
-                break;
+        bcreateNewPost.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent toCreateNewPost = new Intent(LoggedIn.this, CreatePost.class);
+                startActivity(toCreateNewPost);
             }
-        }
+
+        });
+
+
+
     }
+
 }

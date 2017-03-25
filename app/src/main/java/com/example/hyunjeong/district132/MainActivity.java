@@ -18,6 +18,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final Button searchButton = (Button) findViewById(R.id.Search);
         signInButton.setOnClickListener(this);
 
+        searchButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent toSearchResults = new Intent(MainActivity.this, SearchResults.class);
+                startActivity(toSearchResults);
+            }
+
+        });
+
         final Spinner location = (Spinner) findViewById(R.id.Location);
         final Spinner hseType = (Spinner) findViewById(R.id.Type);
         final Spinner saleLease = (Spinner) findViewById(R.id.SaleLease);
@@ -25,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String loc = location.getSelectedItem().toString();
         String hse = hseType.getSelectedItem().toString();
         String slease = saleLease.getSelectedItem().toString();
+
+
 
     }
 

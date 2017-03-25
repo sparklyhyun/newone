@@ -28,7 +28,13 @@ public class Login extends AppCompatActivity {
         final Button bRegister = (Button) findViewById(R.id.bRegister);
         final Button bSignIn = (Button) findViewById(R.id.bSignIn);
 
-        //bSignIn.setOnClickListener((OnClickListener) this);
+        bSignIn.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent toLoggedIn = new Intent(Login.this, LoggedIn.class);
+                startActivity(toLoggedIn);
+            }
+                                   }
+        );
 
 
         /*
