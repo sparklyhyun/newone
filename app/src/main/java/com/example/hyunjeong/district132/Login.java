@@ -15,6 +15,9 @@ import android.widget.TextView;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class Login extends AppCompatActivity {
 
@@ -45,7 +48,7 @@ public class Login extends AppCompatActivity {
                     edName.setError("Invalid Username: The username must be of at least 6 characters and less than 16 characters");
                     edName.requestFocus();
                 }else if(!validatePass(edPass.getText().toString())){
-                    edPass.setError("Invalid Password:The password must be at least 8 characters long and less than 16 characters, and should include at least 1 capital letter and 1 numericaldigit.");
+                    edPass.setError("Invalid Password:The password must be at least 8 characters long and less than 16 characters, and should include at least 1 capital letter and 1 numerical digit.");
                     edPass.requestFocus();
                 }else{
                     Toast.makeText(Login.this, "Registration Success", Toast.LENGTH_LONG).show();
@@ -56,6 +59,12 @@ public class Login extends AppCompatActivity {
     }
 
     protected boolean validatePass(String password) {
+        /*
+        String passPattern ="(?=.*?[0-9])(?=.*?[A-Z])";
+        Pattern pattern = Pattern.compile(passPattern);
+        Matcher matcher = pattern.matcher(password);
+        */
+
         if(password!=null && password.length()>7 && password.length()<17){
             return true;
         }else{
