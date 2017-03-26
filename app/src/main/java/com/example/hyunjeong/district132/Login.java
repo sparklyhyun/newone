@@ -47,7 +47,14 @@ public class Login extends AppCompatActivity {
                 if(!validateUserName(edName.getText().toString())){
                     edName.setError("Invalid Username: The username must be of at least 6 characters and less than 16 characters");
                     edName.requestFocus();
-                }else if(!validatePass(edPass.getText().toString())){
+                }
+                /*)
+                else if(userNameExists(edName.getText().toString())){
+                    edName.setError("Usename already exists");
+                    edName.requestFocus();
+                }
+                */
+                else if(!validatePass(edPass.getText().toString())){
                     edPass.setError("Invalid Password:The password must be at least 8 characters long and less than 16 characters, and should include at least 1 capital letter and 1 numerical digit.");
                     edPass.requestFocus();
                 }else{
@@ -59,13 +66,25 @@ public class Login extends AppCompatActivity {
     }
 
     protected boolean validatePass(String password) {
+        boolean passMatches = false;
+
+        String passPattern ="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\\\S+$).{4,}$";
         /*
-        String passPattern ="(?=.*?[0-9])(?=.*?[A-Z])";
+        ^                 # start-of-string
+(?=.*[0-9])       # a digit must occur at least once
+(?=.*[a-z])       # a lower case letter must occur at least once
+(?=.*[A-Z])       # an upper case letter must occur at least once
+(?=.*[@#$%^&+=])  # a special character must occur at least once you can replace with your special characters
+(?=\\S+$)          # no whitespace allowed in the entire string
+.{4,}             # anything, at least six places though
+$                 # end-of-string
+        */
         Pattern pattern = Pattern.compile(passPattern);
         Matcher matcher = pattern.matcher(password);
-        */
 
-        if(password!=null && password.length()>7 && password.length()<17){
+        passMatches = matcher.matches();
+
+        if(password!=null && password.length()>7 && password.length()<17 && passMatches){
             return true;
         }else{
             return false;
@@ -80,7 +99,16 @@ public class Login extends AppCompatActivity {
         }
     }
 
+//to check if username exists in database
+/*
+    protected boolean userNameExists(String userName){
 
+        if()
+            return true;
+        else
+            return false;
+    }
+*/
 }
 
 
