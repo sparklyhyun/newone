@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.content.Context;
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.widget.Toast;
 
 /**
  * Created by Jeslyn on 26/3/2017.
@@ -52,7 +53,7 @@ public class AccountDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public AccountDB findAccount(String username, String password) {
+    public boolean findAccount(String username, String password) {
         String query1 = "Select * FROM " + TABLE_ACCOUNTS + " WHERE " + COLUMN_USERNAME + " =  \"" + username + "\"";
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -63,17 +64,19 @@ public class AccountDBHandler extends SQLiteOpenHelper {
 
         if (cursor1.getCount() == 0){            //username does not exist
             addAccount(account);
+            return true;
         } else {                                //username exist
             String query2 = "Select * FROM " + query1 + " WHERE " + COLUMN_PASSWORD + " =  \"" + password + "\"";
             Cursor cursor2 = db.rawQuery(query2, null);
             if (cursor2.getCount() == 0){       //password is wrong
                 //maybe retype password?
-            } //else password correct, do nothing
+                return false;
+            }  //else password correct, do nothing
         }
-
         db.close();
+        return true;
 
-        return account;
+
         /*if (cursor.moveToFirst()) {
             cursor.moveToFirst();
             product.setID(Integer.parseInt(cursor.getString(0)));

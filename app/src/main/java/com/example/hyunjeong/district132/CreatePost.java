@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 public class CreatePost extends AppCompatActivity {
 
+    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

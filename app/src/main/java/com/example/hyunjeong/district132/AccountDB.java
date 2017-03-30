@@ -1,5 +1,7 @@
 package com.example.hyunjeong.district132;
 
+import android.widget.Toast;
+
 /**
  * Created by Hyun Jeong on 2017-03-26.
  */
@@ -32,4 +34,5 @@ public class AccountDB {
     public String getPassword() {
         return password;
     }
+
 }

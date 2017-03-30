@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
 
 
 public class Login extends AppCompatActivity {
-
+    AccountDBHandler accHandler = new AccountDBHandler(this, null, null, 1);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,20 +32,26 @@ public class Login extends AppCompatActivity {
         final Button bRegister = (Button) findViewById(R.id.bRegister);
         final Button bSignIn = (Button) findViewById(R.id.bSignIn);
 
-        //AccountDBHandler accHandler = new AccountDBHandler(idk what to put inside);
-        //AccountDB acc = new AccountDB(edName.getText().toString(), edPass.getText().toString());
-
+        //signin
         bSignIn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-               //if(){}
-                Intent toLoggedIn = new Intent(Login.this, LoggedIn.class);
-                startActivity(toLoggedIn);
-            }
-                                   }
+                if((edName.getText().toString()!= null) && (edPass.getText().toString()!= null)) {
+                    if (accHandler.findAccount(edName.getText().toString(), edPass.getText().toString())) {
+                        //if account exists and the password matches, true
+                        //link to other page
+                        Intent toLoggedIn = new Intent(Login.this, LoggedIn.class);
+                        startActivity(toLoggedIn);
+                    } else {
+                        errorMsg("Password wrong, please retype the password");
+                    }
+                }else{
+                    errorMsg("Please type in username and password");
+                }
+            }}
         );
 
 
-
+        //register
         bRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,16 +59,18 @@ public class Login extends AppCompatActivity {
                     edName.setError("Invalid Username: The username must be of at least 6 characters and less than 16 characters");
                     edName.requestFocus();
                 }
-                /*)
-                else if(userNameExists(edName.getText().toString())){
+
+                else if(!accHandler.findAccount(edName.getText().toString(), edPass.getText().toString())){
                     edName.setError("Usename already exists");
                     edName.requestFocus();
                 }
-                */
+
                 else if(!validatePass(edPass.getText().toString())){
-                    edPass.setError("Invalid Password:The password must be at least 8 characters long and less than 16 characters, and should include at least 1 capital letter and 1 numerical digit.");
+                    edPass.setError("Invalid Password:The password must be greater than 8 characters long and less than 16 characters, and should include at least 1 numerical digit.");
                     edPass.requestFocus();
                 }else{
+                    AccountDB acc = new AccountDB(edName.getText().toString(), edPass.getText().toString());
+                    accHandler.addAccount(acc);
                     Toast.makeText(Login.this, "Registration Success", Toast.LENGTH_LONG).show();
                 }
 
@@ -72,25 +80,7 @@ public class Login extends AppCompatActivity {
 
     protected boolean validatePass(String password) {
 
-        /*
-        boolean passMatches = false;
 
-        String passPattern ="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\\\S+$).{4,}$";
-
-        ^                 # start-of-string
-(?=.*[0-9])       # a digit must occur at least once
-(?=.*[a-z])       # a lower case letter must occur at least once
-(?=.*[A-Z])       # an upper case letter must occur at least once
-(?=.*[@#$%^&+=])  # a special character must occur at least once you can replace with your special characters
-(?=\\S+$)          # no whitespace allowed in the entire string
-.{4,}             # anything, at least six places though
-$                 # end-of-string
-
-        Pattern pattern = Pattern.compile(passPattern);
-        Matcher matcher = pattern.matcher(password);
-
-        passMatches = matcher.matches();
-*/
         if(password!=null && password.length()>7 && password.length()<17 && password.matches(".*\\d+.*") ){
             return true;
         }else{
@@ -107,15 +97,12 @@ $                 # end-of-string
     }
 
 //to check if username exists in database
-/*
-    protected boolean userNameExists(String userName){
 
-        if()
-            return true;
-        else
-            return false;
+
+    protected void errorMsg(String msg){
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
-*/
+
 }
 
 
