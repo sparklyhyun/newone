@@ -42,15 +42,11 @@ public class Login extends AppCompatActivity {
                                                Intent toLoggedIn = new Intent(Login.this, LoggedIn.class);
                                                startActivity(toLoggedIn);
                                            } else {
-                                               if (edPass.getText().toString() == null) {
-                                                   edPass.setError("Please enter password");
-                                               } else if (edName.getText().toString() == null) {
-                                                   edName.setError("Please enter username");
-                                               } else {
-                                                   edPass.setError("Password wrong, please re-enter");
+                                               edName.setError("Please enter correct username or password");
+                                               edName.requestFocus();
                                                }
                                            }
-                                       }
+
                                    }
         );
 
@@ -72,6 +68,8 @@ public class Login extends AppCompatActivity {
                     AccountDB acc = new AccountDB(edName.getText().toString(), edPass.getText().toString());
                     accHandler.addAccount(acc);
                     Toast.makeText(Login.this, "Registration Success", Toast.LENGTH_LONG).show();
+
+                    //automatic log in to logged in page
                 }
 
             }
