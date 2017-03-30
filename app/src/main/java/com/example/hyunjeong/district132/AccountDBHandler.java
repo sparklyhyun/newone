@@ -64,15 +64,20 @@ public class AccountDBHandler extends SQLiteOpenHelper {
 
         if (cursor1.getCount() == 0) {            //username does not exist
             db.close();
+            cursor1.close();
             return false;
         } else {                                //username exist
             String query2 = "Select * FROM " + query1 + " WHERE " + COLUMN_PASSWORD + " =  \"" + password + "\"";
             Cursor cursor2 = db.rawQuery(query2, null);
             if (cursor2.getCount() == 0) {       //password is wrong
                 db.close();
+                cursor1.close();
+                cursor2.close();
                 return false;
             }  //else password correct, do nothing
             db.close();
+            cursor1.close();
+            cursor2.close();
             return true;
         }
     }
@@ -88,9 +93,11 @@ public class AccountDBHandler extends SQLiteOpenHelper {
         if (cursor1.getCount() == 0) {            //username does not exist
             addAccount(account);
             db.close();
+            cursor1.close();
             return false;
         } else {                                   //username exist
             db.close();
+            cursor1.close();
             return true;
         }
     }
