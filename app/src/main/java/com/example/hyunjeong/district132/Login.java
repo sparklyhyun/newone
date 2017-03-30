@@ -32,13 +32,18 @@ public class Login extends AppCompatActivity {
         final Button bRegister = (Button) findViewById(R.id.bRegister);
         final Button bSignIn = (Button) findViewById(R.id.bSignIn);
 
+        //AccountDBHandler accHandler = new AccountDBHandler(idk what to put inside);
+        //AccountDB acc = new AccountDB(edName.getText().toString(), edPass.getText().toString());
+
         bSignIn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+               //if(){}
                 Intent toLoggedIn = new Intent(Login.this, LoggedIn.class);
                 startActivity(toLoggedIn);
             }
                                    }
         );
+
 
 
         bRegister.setOnClickListener(new View.OnClickListener() {
@@ -66,10 +71,12 @@ public class Login extends AppCompatActivity {
     }
 
     protected boolean validatePass(String password) {
+
+        /*
         boolean passMatches = false;
 
         String passPattern ="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\\\S+$).{4,}$";
-        /*
+
         ^                 # start-of-string
 (?=.*[0-9])       # a digit must occur at least once
 (?=.*[a-z])       # a lower case letter must occur at least once
@@ -78,13 +85,13 @@ public class Login extends AppCompatActivity {
 (?=\\S+$)          # no whitespace allowed in the entire string
 .{4,}             # anything, at least six places though
 $                 # end-of-string
-        */
+
         Pattern pattern = Pattern.compile(passPattern);
         Matcher matcher = pattern.matcher(password);
 
         passMatches = matcher.matches();
-
-        if(password!=null && password.length()>7 && password.length()<17 && passMatches){
+*/
+        if(password!=null && password.length()>7 && password.length()<17 && password.matches(".*\\d+.*") ){
             return true;
         }else{
             return false;

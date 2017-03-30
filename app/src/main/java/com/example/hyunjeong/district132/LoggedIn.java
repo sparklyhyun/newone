@@ -17,7 +17,6 @@ public class LoggedIn extends AppCompatActivity {
         setContentView(R.layout.activity_logged_in);
 
         final TextView welcomeMsg = (TextView) findViewById(R.id.welcome);
-        final EditText edName = (EditText) findViewById(R.id.eduserName);
 
         final Button bcreateNewPost = (Button) findViewById(R.id.bcreateNewPost);
         final Button bviewMyPost = (Button) findViewById(R.id.bViewPost);
