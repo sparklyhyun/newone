@@ -62,7 +62,7 @@ public class Login extends AppCompatActivity {
                 if (!validateUserName(edName.getText().toString())) {
                     edName.setError("Invalid Username: The username must be of at least 6 characters and less than 16 characters");
                     edName.requestFocus();
-                } else if (!accHandler.findAccount(edName.getText().toString(), edPass.getText().toString())) {
+                } else if (accHandler.checkExistingAccount(edName.getText().toString(), edPass.getText().toString())) {
                     edName.setError("Usename already exists");
                     edName.requestFocus();
                 } else if (!validatePass(edPass.getText().toString())) {

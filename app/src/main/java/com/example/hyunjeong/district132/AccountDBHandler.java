@@ -62,33 +62,39 @@ public class AccountDBHandler extends SQLiteOpenHelper {
 
         AccountDB account = new AccountDB(username, password);
 
-        if (cursor1.getCount() == 0){            //username does not exist
-            addAccount(account);
-            return true;
+        if (cursor1.getCount() == 0) {            //username does not exist
+            db.close();
+            return false;
         } else {                                //username exist
             String query2 = "Select * FROM " + query1 + " WHERE " + COLUMN_PASSWORD + " =  \"" + password + "\"";
             Cursor cursor2 = db.rawQuery(query2, null);
-            if (cursor2.getCount() == 0){       //password is wrong
-                //maybe retype password?
+            if (cursor2.getCount() == 0) {       //password is wrong
+                db.close();
                 return false;
             }  //else password correct, do nothing
+            db.close();
+            return true;
         }
-        db.close();
-        return true;
-
-
-        /*if (cursor.moveToFirst()) {
-            cursor.moveToFirst();
-            product.setID(Integer.parseInt(cursor.getString(0)));
-            product.setProductName(cursor.getString(1));
-            product.setQuantity(Integer.parseInt(cursor.getString(2)));
-            cursor.close();
-        } else {
-            product = null;
-        }*/
-
-        //return product;
     }
+    public boolean checkExistingAccount(String username, String password) {
+        String query1 = "Select * FROM " + TABLE_ACCOUNTS + " WHERE " + COLUMN_USERNAME + " =  \"" + username + "\"";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor1 = db.rawQuery(query1, null);
+
+        AccountDB account = new AccountDB(username, password);
+
+        if (cursor1.getCount() == 0) {            //username does not exist
+            addAccount(account);
+            db.close();
+            return false;
+        } else {                                   //username exist
+            db.close();
+            return true;
+        }
+    }
+
 
     /*public boolean deleteProduct(String productname) {
 
