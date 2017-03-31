@@ -31,8 +31,8 @@ public class UserSessionManager {
     // User name (make variable public to access from outside)
     public static final String KEY_NAME = "name";
 
-    // Email address (make variable public to access from outside)
-    public static final String KEY_EMAIL = "email";
+    // user password (make variable public to access from outside)
+    public static final String KEY_PASSWORD = "email";
 
     // Constructor
     public UserSessionManager(Context context){
@@ -49,8 +49,8 @@ public class UserSessionManager {
         // Storing name in pref
         editor.putString(KEY_NAME, name);
 
-        // Storing email in pref
-        editor.putString(KEY_EMAIL, email);
+        // Storing password in pref
+        editor.putString(KEY_PASSWORD, email);
 
         // commit changes
         editor.commit();
@@ -95,8 +95,8 @@ public class UserSessionManager {
         // user name
         user.put(KEY_NAME, pref.getString(KEY_NAME, null));
 
-        // user email id
-        user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
+        // user password id
+        user.put(KEY_PASSWORD, pref.getString(KEY_PASSWORD, null));
 
         // return user
         return user;
