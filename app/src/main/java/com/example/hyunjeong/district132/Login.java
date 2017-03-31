@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -20,83 +21,69 @@ import java.util.regex.Pattern;
 
 
 public class Login extends AppCompatActivity {
-    AccountDBHandler accHandler = new AccountDBHandler(this, null, null, 1);
+    EditText edName, edPass;
+    Button bRegister, bSignIn;
+    LoginDatabaseAdapter loginDatabaseAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final EditText edName = (EditText) findViewById(R.id.eduserName);
-        final EditText edPass = (EditText) findViewById(R.id.edpassword);
+        loginDatabaseAdapter = new LoginDatabaseAdapter(this);
+        loginDatabaseAdapter = loginDatabaseAdapter.open();
 
-        final Button bRegister = (Button) findViewById(R.id.bRegister);
-        final Button bSignIn = (Button) findViewById(R.id.bSignIn);
+        edName = (EditText) findViewById(R.id.eduserName);
+        edPass = (EditText) findViewById(R.id.edpassword);
+
+        bRegister = (Button) findViewById(R.id.bRegister);
+        bSignIn = (Button) findViewById(R.id.bSignIn);
 
         //signin
         bSignIn.setOnClickListener(new View.OnClickListener() {
-                                       public void onClick(View v) {
-                                           if (accHandler.findAccount(edName.getText().toString(), edPass.getText().toString())) {
-                                               //if account exists and the password matches, true
-                                               //link to other page
-                                               Intent toLoggedIn = new Intent(Login.this, LoggedIn.class);
-                                               startActivity(toLoggedIn);
-                                           } else {
-                                               edName.setError("Please enter correct username or password");
-                                               edName.requestFocus();
-                                               }
-                                           }
+            public void onClick(View v) {
+                String username = edName.getText().toString();
+                String password = edPass.getText().toString();
+                String storedPassword = loginDatabaseAdapter.getSinlgeEntry(username);
+                if (password.equals(storedPassword)) {
+                    Toast.makeText(Login.this, "login Successful", Toast.LENGTH_LONG).show();
 
-                                   }
-        );
+                    Intent toSignin = new Intent(Login.this, LoggedIn.class);
+                    startActivity(toSignin);
+                } else {
+                    edPass.setError("Password incorrect");
+                    edPass.requestFocus();
+                }
+            }
+        });
 
 
         //register
         bRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!validateUserName(edName.getText().toString())) {
-                    edName.setError("Invalid Username: The username must be of at least 6 characters and less than 16 characters");
+                String username = edName.getText().toString();
+                String password = edPass.getText().toString();
+
+                if (username.equals(" ")) {
+                    edName.setError("Please enter username");
                     edName.requestFocus();
-                } else if (!validatePass(edPass.getText().toString())) {
-                    edPass.setError("Invalid Password:The password must be greater than 8 characters long and less than 16 characters, and should include at least 1 numerical digit.");
+                    return;
+                } else if (password.equals(" ")) {
+                    edPass.setError("Please enter password");
                     edPass.requestFocus();
-                }else if (accHandler.checkExistingAccount(edName.getText().toString(), edPass.getText().toString())) {
-                        edName.setError("Usename already exists");
-                        edName.requestFocus();
+                    return;
                 } else {
-                    AccountDB acc = new AccountDB(edName.getText().toString(), edPass.getText().toString());
-                    accHandler.addAccount(acc);
-                    Toast.makeText(Login.this, "Registration Success", Toast.LENGTH_LONG).show();
+                    loginDatabaseAdapter.insertEntry(username, password);
+                    Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_LONG).show();
 
-                    //automatic log in to logged in page
                 }
-
             }
+
+
         });
     }
-
-    protected boolean validatePass(String password) {
-
-        if (password != null && password.length() > 7 && password.length() < 17 && password.matches(".*\\d+.*")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    protected boolean validateUserName(String userName) {
-        if (userName != null && userName.length() > 5 && userName.length() < 17) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
 }
-
-
-
 
 
 
