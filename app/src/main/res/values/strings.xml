@@ -6,6 +6,7 @@
     <string name="Welcome">Welcome</string>
     <string name="createNewPost">Create New Post</string>
     <string name="viewMyPost">View My Posts</string>
+    <string name="signOut">Sign Out</string>
 
     <string-array name="Location">
         <item>Joo Koon</item>
