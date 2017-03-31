@@ -18,6 +18,7 @@ public class LoggedIn extends AppCompatActivity {
 
         final TextView welcomeMsg = (TextView) findViewById(R.id.welcome);
 
+
         final Button bcreateNewPost = (Button) findViewById(R.id.bcreateNewPost);
         final Button bviewMyPost = (Button) findViewById(R.id.bViewPost);
         final Button searchButton = (Button) findViewById(R.id.Search);

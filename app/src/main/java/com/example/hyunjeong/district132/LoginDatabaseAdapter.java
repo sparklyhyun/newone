@@ -75,6 +75,9 @@ public class LoginDatabaseAdapter {
         cursor.close();
         return password;
     }
+
+
+
     public void  updateEntry(String userName,String password)
     {
         // Define the updated row content.

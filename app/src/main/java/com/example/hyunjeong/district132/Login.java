@@ -50,7 +50,15 @@ public class Login extends AppCompatActivity {
 
                     Intent toSignin = new Intent(Login.this, LoggedIn.class);
                     startActivity(toSignin);
-                } else {
+                }if (username.equals(" ")) {
+                    edName.setError("Please enter username");
+                    edName.requestFocus();
+                    return;
+                } else if (!username.equals(" ") && password.equals(" ")) {
+                    edPass.setError("Please enter password");
+                    edPass.requestFocus();
+                    return;
+                }else {
                     edPass.setError("Password incorrect");
                     edPass.requestFocus();
                 }
@@ -64,24 +72,43 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 String username = edName.getText().toString();
                 String password = edPass.getText().toString();
+                String storedPassword = loginDatabaseAdapter.getSinlgeEntry(username);
 
                 if (username.equals(" ")) {
                     edName.setError("Please enter username");
                     edName.requestFocus();
                     return;
-                } else if (password.equals(" ")) {
+                } else if (!username.equals(" ") && password.equals(" ")) {
                     edPass.setError("Please enter password");
                     edPass.requestFocus();
                     return;
-                } else {
+                }else if(!storedPassword.equals(" ")){
+                    edName.setError("Username already exists");
+                    edName.requestFocus();
+                    return;
+                }else if(!username.equals(" ") && (password.length()<8 || password.length()>17)){
+                    edPass.setError("Password must be at least 8 letters and at most 16 letters long");
+                    edPass.requestFocus();
+                    return;
+                }else if(!username.equals(" ") && username.length()<5){
+                    edName.setError("Username must be at least 6 letters long");
+                    edName.requestFocus();
+                }
+                else {
                     loginDatabaseAdapter.insertEntry(username, password);
                     Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_LONG).show();
-
                 }
             }
 
 
         });
+    }
+
+    protected void onDestroy() {
+        // TODO Auto-generated method stub
+        super.onDestroy();
+        //close database
+        loginDatabaseAdapter.close();
     }
 }
 
