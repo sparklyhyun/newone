@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 else if (slease == "Lease")
                     sl = false;
 
-                searchResults(View view); // ???
+                //searchResults(View view); // ???
 
                 //move to search results activity
                 //Intent toSearchResults = new Intent(MainActivity.this, SearchResults.class);

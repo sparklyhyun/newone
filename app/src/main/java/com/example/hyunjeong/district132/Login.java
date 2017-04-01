@@ -44,7 +44,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 String username = edName.getText().toString();
                 String password = edPass.getText().toString();
-                String storedPassword = loginDatabaseAdapter.getSinlgeEntry(username);
+                String storedPassword = loginDatabaseAdapter.getSingleEntry(username);
                 if (password.equals(storedPassword)) {
                     Toast.makeText(Login.this, "login Successful", Toast.LENGTH_LONG).show();
 
@@ -72,7 +72,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 String username = edName.getText().toString();
                 String password = edPass.getText().toString();
-                String storedPassword = loginDatabaseAdapter.getSinlgeEntry(username);
+                String storedPassword = loginDatabaseAdapter.getSingleEntry(username);
 
                 if (username.equals(" ")) {
                     edName.setError("Please enter username");
@@ -82,7 +82,7 @@ public class Login extends AppCompatActivity {
                     edPass.setError("Please enter password");
                     edPass.requestFocus();
                     return;
-                }else if(!storedPassword.equals(" ")){
+                }else if(!username.equals(" ") && !storedPassword.equals("NOT EXIST")){
                     edName.setError("Username already exists");
                     edName.requestFocus();
                     return;
