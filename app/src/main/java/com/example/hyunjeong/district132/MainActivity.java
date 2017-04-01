@@ -6,9 +6,12 @@ import android.widget.Button;
 import android.view.View;
 import android.content.Intent;
 import android.widget.Spinner;
+import android.database.Cursor;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
+    String loc;
+    String hse;
+    Boolean sl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,22 +23,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         searchButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent toSearchResults = new Intent(MainActivity.this, SearchResults.class);
-                startActivity(toSearchResults);
+                final Spinner location = (Spinner) findViewById(R.id.Location);
+                final Spinner hseType = (Spinner) findViewById(R.id.Type);
+                final Spinner saleLease = (Spinner) findViewById(R.id.SaleLease);
+
+                String loc = location.getSelectedItem().toString();
+                String hse = hseType.getSelectedItem().toString();
+                String slease = saleLease.getSelectedItem().toString();
+
+                if (slease == "Sale")
+                    sl = true;
+                else if (slease == "Lease")
+                    sl = false;
+
+                searchResults(View view); // ???
+
+                //move to search results activity
+                //Intent toSearchResults = new Intent(MainActivity.this, SearchResults.class);
+                //startActivity(toSearchResults);
             }
 
         });
-
-        final Spinner location = (Spinner) findViewById(R.id.Location);
-        final Spinner hseType = (Spinner) findViewById(R.id.Type);
-        final Spinner saleLease = (Spinner) findViewById(R.id.SaleLease);
-
-        String loc = location.getSelectedItem().toString();
-        String hse = hseType.getSelectedItem().toString();
-        String slease = saleLease.getSelectedItem().toString();
-
-
-
 
     }
 
@@ -47,5 +55,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             }
         }
+    }
+
+    public void searchResults(View view) {
+        PostDBHandler dbHandler = new PostDBHandler(this, null, null, 1);
+
+        Cursor posts = dbHandler.searchPost(loc, hse, sl);
+
+        SearchResults results = new SearchResults();
+
+        if (posts != null)
+            results.displayResults(posts);
+        else
+            results.noResultsFound();
     }
 }
