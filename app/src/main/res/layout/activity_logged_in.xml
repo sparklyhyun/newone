@@ -23,18 +23,6 @@
             android:text="@string/Welcome"
             android:textSize="24sp" />
 
-        <EditText
-            android:id="@+id/displayUsername"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/welcome"
-            android:ems="10"
-            android:inputType="textPersonName" />
-
         <Spinner
             android:id="@+id/Type"
             android:layout_width="356dp"
@@ -79,18 +67,18 @@
             android:id="@+id/bcreateNewPost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/displayUsername"
+            android:layout_above="@+id/bViewPost"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="25dp"
+            android:layout_marginBottom="12dp"
             android:text="@string/createNewPost" />
 
         <Button
             android:id="@+id/bViewPost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/bcreateNewPost"
+            android:layout_above="@+id/SaleLease"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
+            android:layout_marginBottom="55dp"
             android:text="@string/viewMyPost" />
 
         <Button
@@ -101,6 +89,24 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="39dp"
             android:text="@string/searchUpButton" />
+
+        <Button
+            android:id="@+id/signOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/bSearch"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/bSearch"
+            android:layout_marginBottom="14dp"
+            android:text="@string/signOut" />
+
+        <TextView
+            android:id="@+id/displayUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/welcome" />
 
 
     </RelativeLayout>

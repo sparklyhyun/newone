@@ -1,5 +1,6 @@
 package com.example.hyunjeong.district132;
 
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -8,6 +9,10 @@ import android.content.Intent;
 import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    String loc;
+    String hse;
+    boolean sl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,24 +23,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final Button searchButton = (Button) findViewById(R.id.Search);
         signInButton.setOnClickListener(this);
 
-        searchButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                Intent toSearchResults = new Intent(MainActivity.this, SearchResults.class);
-                startActivity(toSearchResults);
-            }
-
-        });
-
         final Spinner location = (Spinner) findViewById(R.id.Location);
         final Spinner hseType = (Spinner) findViewById(R.id.Type);
         final Spinner saleLease = (Spinner) findViewById(R.id.SaleLease);
 
-        String loc = location.getSelectedItem().toString();
-        String hse = hseType.getSelectedItem().toString();
+        loc = location.getSelectedItem().toString();
+        hse = hseType.getSelectedItem().toString();
+
         String slease = saleLease.getSelectedItem().toString();
 
+        if (slease == "Sale")
+            sl = true;
+        else if (slease == "Lease")
+            sl = false;
 
-
+        searchButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent toSearchResults = new Intent(MainActivity.this, SearchResults.class);
+                toSearchResults.putExtra("location", loc);
+                toSearchResults.putExtra("housetype", hse);
+                toSearchResults.putExtra("purpose", sl);
+                startActivity(toSearchResults);
+            }
+        });
     }
 
     public void onClick(View view) {
@@ -47,4 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
+
+
+
 }

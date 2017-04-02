@@ -1,11 +1,12 @@
 <resources>
-    <string name="app_name">District13 v2 </string>
+    <string name="app_name">13Properties </string>
 
     <string name="signInButton">Sign In</string>
     <string name="searchUpButton">Search</string>
     <string name="Welcome">Welcome</string>
     <string name="createNewPost">Create New Post</string>
     <string name="viewMyPost">View My Posts</string>
+    <string name="signOut">Sign Out</string>
 
     <string-array name="Location">
         <item>Joo Koon</item>
@@ -44,6 +45,14 @@
         <item>3</item>
         <item>4</item>
         <item>5</item>
+    </string-array>
+    <string-array name="salerent">
+        <item>For Sale</item>
+        <item>For Rent</item>
+    </string-array>
+    <string-array name="Furnishing">
+        <item>Fully furnished</item>
+        <item>Unfurnished</item>
     </string-array>
 
 

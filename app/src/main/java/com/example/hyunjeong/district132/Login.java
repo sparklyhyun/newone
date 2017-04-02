@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -20,72 +21,101 @@ import java.util.regex.Pattern;
 
 
 public class Login extends AppCompatActivity {
+    EditText edName, edPass;
+    Button bRegister, bSignIn;
+    LoginDatabaseAdapter loginDatabaseAdapter;
+    UserSessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final EditText edName = (EditText) findViewById(R.id.eduserName);
-        final EditText edPass = (EditText) findViewById(R.id.edpassword);
+        loginDatabaseAdapter = new LoginDatabaseAdapter(this);
+        loginDatabaseAdapter = loginDatabaseAdapter.open();
 
-        final Button bRegister = (Button) findViewById(R.id.bRegister);
-        final Button bSignIn = (Button) findViewById(R.id.bSignIn);
+        session = new UserSessionManager(getApplicationContext());
 
+        edName = (EditText) findViewById(R.id.eduserName);
+        edPass = (EditText) findViewById(R.id.edpassword);
+
+        bRegister = (Button) findViewById(R.id.bRegister);
+        bSignIn = (Button) findViewById(R.id.bSignIn);
+
+        //signin
         bSignIn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent toLoggedIn = new Intent(Login.this, LoggedIn.class);
-                startActivity(toLoggedIn);
+                String username = edName.getText().toString();
+                String password = edPass.getText().toString();
+                String storedPassword = loginDatabaseAdapter.getSingleEntry(username);
+                if (password.equals(storedPassword)) {
+                    Toast.makeText(Login.this, "login Successful", Toast.LENGTH_LONG).show();
+
+                    session.createUserLoginSession(username, password);
+
+                    Intent toSignin = new Intent(Login.this, LoggedIn.class);
+                    startActivity(toSignin);
+                }if (username.equals(" ")) {
+                    edName.setError("Please enter username");
+                    edName.requestFocus();
+                    return;
+                } else if (!username.equals(" ") && password.equals(" ")) {
+                    edPass.setError("Please enter password");
+                    edPass.requestFocus();
+                    return;
+                }else {
+                    edPass.setError("Password incorrect");
+                    edPass.requestFocus();
+                }
             }
-                                   }
-        );
+        });
 
 
+        //register
         bRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!validateUserName(edName.getText().toString())){
-                    edName.setError("Invalid Username: The username must be of at least 6 characters and less than 16 characters");
-                    edName.requestFocus();
-                }else if(!validatePass(edPass.getText().toString())){
-                    edPass.setError("Invalid Password:The password must be at least 8 characters long and less than 16 characters, and should include at least 1 capital letter and 1 numerical digit.");
-                    edPass.requestFocus();
-                }else{
-                    Toast.makeText(Login.this, "Registration Success", Toast.LENGTH_LONG).show();
-                }
+                String username = edName.getText().toString();
+                String password = edPass.getText().toString();
+                String storedPassword = loginDatabaseAdapter.getSingleEntry(username);
 
+                if (username.equals(" ")) {
+                    edName.setError("Please enter username");
+                    edName.requestFocus();
+                    return;
+                } else if (!username.equals(" ") && password.equals(" ")) {
+                    edPass.setError("Please enter password");
+                    edPass.requestFocus();
+                    return;
+                }else if(!username.equals(" ") && !storedPassword.equals("NOT EXIST")){
+                    edName.setError("Username already exists");
+                    edName.requestFocus();
+                    return;
+                }else if(!username.equals(" ") && (password.length()<8 || password.length()>17)){
+                    edPass.setError("Password must be at least 8 letters and at most 16 letters long");
+                    edPass.requestFocus();
+                    return;
+                }else if(!username.equals(" ") && username.length()<5){
+                    edName.setError("Username must be at least 6 letters long");
+                    edName.requestFocus();
+                }
+                else {
+                    loginDatabaseAdapter.insertEntry(username, password);
+                    Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_LONG).show();
+                }
             }
+
+
         });
     }
 
-    protected boolean validatePass(String password) {
-        /*
-        String passPattern ="(?=.*?[0-9])(?=.*?[A-Z])";
-        Pattern pattern = Pattern.compile(passPattern);
-        Matcher matcher = pattern.matcher(password);
-        */
-
-        if(password!=null && password.length()>7 && password.length()<17){
-            return true;
-        }else{
-            return false;
-        }
+    protected void onDestroy() {
+        // TODO Auto-generated method stub
+        super.onDestroy();
+        //close database
+        loginDatabaseAdapter.close();
     }
-
-    protected boolean validateUserName(String userName) {
-        if(userName!=null && userName.length()>5 && userName.length()<17){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-
 }
-
-
-
-
 
 
 
