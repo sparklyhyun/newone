@@ -24,6 +24,7 @@ public class Login extends AppCompatActivity {
     EditText edName, edPass;
     Button bRegister, bSignIn;
     LoginDatabaseAdapter loginDatabaseAdapter;
+    UserSessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,8 @@ public class Login extends AppCompatActivity {
 
         loginDatabaseAdapter = new LoginDatabaseAdapter(this);
         loginDatabaseAdapter = loginDatabaseAdapter.open();
+
+        session = new UserSessionManager(getApplicationContext());
 
         edName = (EditText) findViewById(R.id.eduserName);
         edPass = (EditText) findViewById(R.id.edpassword);
@@ -47,6 +50,8 @@ public class Login extends AppCompatActivity {
                 String storedPassword = loginDatabaseAdapter.getSingleEntry(username);
                 if (password.equals(storedPassword)) {
                     Toast.makeText(Login.this, "login Successful", Toast.LENGTH_LONG).show();
+
+                    session.createUserLoginSession(username, password);
 
                     Intent toSignin = new Intent(Login.this, LoggedIn.class);
                     startActivity(toSignin);

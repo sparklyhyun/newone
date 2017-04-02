@@ -67,19 +67,19 @@
             android:id="@+id/bcreateNewPost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/createNewPost"
             android:layout_above="@+id/bViewPost"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="12dp" />
+            android:layout_marginBottom="12dp"
+            android:text="@string/createNewPost" />
 
         <Button
             android:id="@+id/bViewPost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/viewMyPost"
             android:layout_above="@+id/SaleLease"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="55dp" />
+            android:layout_marginBottom="55dp"
+            android:text="@string/viewMyPost" />
 
         <Button
             android:id="@+id/bSearch"
@@ -90,17 +90,6 @@
             android:layout_marginTop="39dp"
             android:text="@string/searchUpButton" />
 
-        <EditText
-            android:id="@+id/displayUsername"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/bSearch"
-            android:layout_alignRight="@+id/bSearch"
-            android:layout_below="@+id/welcome"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
-
         <Button
             android:id="@+id/signOut"
             android:layout_width="wrap_content"
@@ -110,6 +99,14 @@
             android:layout_alignStart="@+id/bSearch"
             android:layout_marginBottom="14dp"
             android:text="@string/signOut" />
+
+        <TextView
+            android:id="@+id/displayUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/welcome" />
 
 
     </RelativeLayout>

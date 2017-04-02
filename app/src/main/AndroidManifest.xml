@@ -19,7 +19,8 @@
         <activity android:name=".Login" />
         <activity android:name=".LoggedIn" />
         <activity android:name=".CreatePost" />
-        <activity android:name=".SearchResults"></activity>
+        <activity android:name=".SearchResults" />
+        <activity android:name=".ViewMyPost"></activity>
     </application>
 
 </manifest>

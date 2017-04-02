@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final UserSessionManager session = new UserSessionManager(getApplicationContext());
+
         final Button signInButton = (Button) findViewById(R.id.SignIn);
         final Button searchButton = (Button) findViewById(R.id.Search);
         signInButton.setOnClickListener(this);
@@ -45,13 +47,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         });
 
+        if(session.checkLoginMain()){
+            Intent alrLoggedIn = new Intent(getApplicationContext(), LoggedIn.class);
+            startActivity(alrLoggedIn);
+        }
+
+
     }
 
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.SignIn: {
-                Intent intent = new Intent(getApplicationContext(), Login.class);
-                startActivity(intent);
+                Intent toLogin = new Intent(getApplicationContext(), Login.class);
+                startActivity(toLogin);
                 break;
             }
         }
