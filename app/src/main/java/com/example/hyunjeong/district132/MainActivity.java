@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final UserSessionManager session = new UserSessionManager(getApplicationContext());
 
         final Button signInButton = (Button) findViewById(R.id.SignIn);
         final Button searchButton = (Button) findViewById(R.id.Search);
@@ -46,6 +47,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(toSearchResults);
             }
         });
+
+        if(session.checkLoginMain()){
+            Intent alrLoggedIn = new Intent(MainActivity.this, LoggedIn.class);
+            startActivity(alrLoggedIn);
+        }
     }
 
     public void onClick(View view) {

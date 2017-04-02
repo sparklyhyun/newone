@@ -32,7 +32,6 @@ public class CreatePost extends AppCompatActivity {
         final UserSessionManager session = new UserSessionManager(getApplicationContext());
         HashMap<String, String> user = session.getUserDetails();
         username = user.get(UserSessionManager.KEY_NAME);
-        String password = user.get(UserSessionManager.KEY_PASSWORD);
 
         session.checkLogin();
 

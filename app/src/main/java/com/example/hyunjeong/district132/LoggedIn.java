@@ -43,6 +43,8 @@ public class LoggedIn extends AppCompatActivity {
         String name = user.get(UserSessionManager.KEY_NAME);
         dUserNAme.setText(Html.fromHtml(name));
 
+
+
         bcreateNewPost.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent toCreateNewPost = new Intent(LoggedIn.this, CreatePost.class);
