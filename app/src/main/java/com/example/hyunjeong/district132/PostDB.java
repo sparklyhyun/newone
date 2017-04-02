@@ -10,20 +10,20 @@ public class PostDB {
     private String username;
     private String location;
     private String housetype;
-    private boolean purpose;
-    private double price;
+    private String purpose;
+    private int price;
     private int no_of_rooms;
-    private boolean furnishing;
+    private String furnishing;
     private String facilities;
     private String desc;
     private double size;
-
+    private String address;
     public PostDB() {
 
     }
 
-    public PostDB(int post_id, String username, String location, String housetype, boolean purpose, double price,
-                  int no_of_rooms, boolean furnishing, String facilities, String desc, double size) {
+    public PostDB(int id,String username, String location, String housetype, String purpose, int price,
+                  int no_of_rooms, String furnishing, String facilities, String desc, double size) {
         this.post_id = post_id;
         this.username = username;
         this.location = location;
@@ -37,7 +37,7 @@ public class PostDB {
         this.size = size;
     }
 
-    public void setPost_id(int post_id) {
+   public void setPost_id(int post_id) {
         this.post_id = post_id;
     }
 
@@ -69,19 +69,19 @@ public class PostDB {
         this.housetype = housetype;
     }
 
-    public boolean getPurpose(){
+    public String getPurpose(){
         return purpose;
     }
 
-    public void setPurpose(boolean purpose){
+    public void setPurpose(String purpose){
         this.purpose = purpose;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -93,11 +93,11 @@ public class PostDB {
         this.no_of_rooms = no_of_rooms;
     }
 
-    public boolean getFurnishing() {
+    public String getFurnishing() {
         return furnishing;
     }
 
-    public void setFurnishing(boolean furnishing) {
+    public void setFurnishing(String furnishing) {
         this.furnishing = furnishing;
     }
 
@@ -124,4 +124,8 @@ public class PostDB {
     public void setSize(double size) {
         this.size = size;
     }
+
+    public void setAddress(String address){this.address=address;}
+
+    public String getAddress(){return address;}
 }
