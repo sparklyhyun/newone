@@ -45,4 +45,4 @@ public class CreatePost extends AppCompatActivity {
 
 //public PostDB(int post_id, String username, String location, String housetype, boolean purpose, double price,
 //int no_of_rooms, boolean furnishing, String facilities, String desc, double size) {
-}
+
