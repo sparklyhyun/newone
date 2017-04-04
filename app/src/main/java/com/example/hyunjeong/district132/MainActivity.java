@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if (slease == "Lease")
             sl = false;
 
-        searchButton.setOnClickListener(new View.OnClickListener(){
+        /*searchButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent toSearchResults = new Intent(MainActivity.this, SearchResults.class);
                 toSearchResults.putExtra("location", loc);
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 toSearchResults.putExtra("purpose", sl);
                 startActivity(toSearchResults);
             }
-        });
+        });*/
 
         if(session.checkLoginMain()){
             Intent alrLoggedIn = new Intent(MainActivity.this, LoggedIn.class);

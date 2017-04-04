@@ -1,4 +1,4 @@
-package com.example.hyunjeong.district132;
+/*package com.example.hyunjeong.district132;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -12,7 +12,7 @@ import android.widget.TextView;
  * Created by Liew on 1/4/2017.
  */
 
-public class PostResultCursorAdapter extends CursorAdapter {
+/*public class PostResultCursorAdapter extends CursorAdapter {
     public PostResultCursorAdapter(Context context, Cursor cursor) {
         super(context, cursor, 0);
     }
@@ -47,3 +47,4 @@ public class PostResultCursorAdapter extends CursorAdapter {
         textViewPurpose.setText(purp);
     }
 }
+*/

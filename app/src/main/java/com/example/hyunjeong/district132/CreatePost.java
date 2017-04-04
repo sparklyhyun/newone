@@ -80,7 +80,7 @@ public class CreatePost extends AppCompatActivity {
                 id=0;
 
 
-                post = new PostDB(id,username, location, housetype, purpose, price, no_of_rooms,
+                post = new PostDB(username, location, housetype, purpose, price, no_of_rooms,
                         furnishing, facilities, desc, size);
 
                 dbHandler.addPost(post);
