@@ -1,5 +1,7 @@
 package com.example.hyunjeong.district132;
 
+import java.util.Random;
+
 /**
  * Created by Jeslyn on 30/3/2017.
  */
@@ -22,9 +24,9 @@ public class PostDB {
 
     }
 
-    public PostDB(int id,String username, String location, String housetype, String purpose, int price,
+    public PostDB(String username, String location, String housetype, String purpose, int price,
                   int no_of_rooms, String furnishing, String facilities, String desc, double size) {
-        this.post_id = post_id;
+        this.post_id = generatePostID();
         this.username = username;
         this.location = location;
         this.housetype = housetype;
@@ -38,7 +40,7 @@ public class PostDB {
     }
 
    public void setPost_id(int post_id) {
-        this.post_id = post_id;
+        this.post_id = generatePostID();
     }
 
     public int getPost_id() {
@@ -128,4 +130,12 @@ public class PostDB {
     public void setAddress(String address){this.address=address;}
 
     public String getAddress(){return address;}
+
+    public int generatePostID(){
+        Random rand = new Random();
+        int min = 1000;
+        int max = 9999;
+        int n = rand.nextInt((max-min)+1)+min;
+        return n;
+    }
 }

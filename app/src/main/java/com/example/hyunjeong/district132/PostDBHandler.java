@@ -36,7 +36,7 @@ public class PostDBHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_POST_TABLE = "CREATE TABLE " + TABLE_POSTS + "(" + COLUMN_POST_ID + " INTEGER PRIMARY KEY," +
-                COLUMN_USERNAME + " VARCHAR(15)," + COLUMN_LOCATION + " VARCHAR(20)," + COLUMN_HOUSETYPE + " VARCHAR(20),"
+                COLUMN_USERNAME + " VARCHAR(16)," + COLUMN_LOCATION + " VARCHAR(20)," + COLUMN_HOUSETYPE + " VARCHAR(20),"
                 + COLUMN_PURPOSE + " BOOLEAN," + COLUMN_PRICE + " DECIMAL(7,2)," + COLUMN_NO_OF_ROOMS + " INTEGER," +
                 COLUMN_FURNISHING + " BOOLEAN," + COLUMN_FACILITIES + " VARCHAR(80)," + COLUMN_DESC + " VARCHAR(100)," +
                 COLUMN_SIZE + " DECIMAL(4,2)" + ")";
