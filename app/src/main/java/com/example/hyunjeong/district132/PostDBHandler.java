@@ -1,5 +1,6 @@
 package com.example.hyunjeong.district132;
 
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.content.Context;
@@ -37,7 +38,7 @@ public class PostDBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_POST_TABLE = "CREATE TABLE " + TABLE_POSTS + "(" + COLUMN_POST_ID + " INTEGER PRIMARY KEY," +
                 COLUMN_USERNAME + " VARCHAR(16)," + COLUMN_LOCATION + " VARCHAR(20)," + COLUMN_HOUSETYPE + " VARCHAR(20),"
-                + COLUMN_PURPOSE + " BOOLEAN," + COLUMN_PRICE + " DECIMAL(7,2)," + COLUMN_NO_OF_ROOMS + " INTEGER," +
+                + COLUMN_PURPOSE + " TEXT," + COLUMN_PRICE + " DECIMAL(7,2)," + COLUMN_NO_OF_ROOMS + " INTEGER," +
                 COLUMN_FURNISHING + " BOOLEAN," + COLUMN_FACILITIES + " VARCHAR(80)," + COLUMN_DESC + " VARCHAR(100)," +
                 COLUMN_SIZE + " DECIMAL(4,2)" + ")";
         db.execSQL(CREATE_POST_TABLE);
@@ -70,15 +71,17 @@ public class PostDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public Cursor searchPost(String location, String housetype, boolean purpose) {
+    public Cursor searchPost(String location, String housetype, String purpose) {
         String query = "Select * FROM " + TABLE_POSTS +
                 " WHERE " + COLUMN_LOCATION + " = \"" + location + "\"" +
                 " AND " + COLUMN_HOUSETYPE + " = \"" + housetype + "\"" +
                 " AND " + COLUMN_PURPOSE + " = \"" + purpose + "\"";
 
+        //String query = " SELECT * FROM " + TABLE_POSTS;
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = db.rawQuery(query, null);
+        //DatabaseUtils.dumpCursorToString(cursor);
         return cursor;
     }
 
