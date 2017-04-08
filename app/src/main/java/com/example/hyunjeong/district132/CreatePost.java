@@ -32,7 +32,6 @@ public class CreatePost extends AppCompatActivity {
         final UserSessionManager session = new UserSessionManager(getApplicationContext());
         HashMap<String, String> user = session.getUserDetails();
         username = user.get(UserSessionManager.KEY_NAME);
-        String password = user.get(UserSessionManager.KEY_PASSWORD);
 
         session.checkLogin();
 
@@ -81,7 +80,7 @@ public class CreatePost extends AppCompatActivity {
                 id=0;
 
 
-                post = new PostDB(id,username, location, housetype, purpose, price, no_of_rooms,
+                post = new PostDB(username, location, housetype, purpose, price, no_of_rooms,
                         furnishing, facilities, desc, size);
 
                 dbHandler.addPost(post);

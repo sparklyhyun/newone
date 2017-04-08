@@ -66,6 +66,7 @@ public class Login extends AppCompatActivity {
                 }else {
                     edPass.setError("Password incorrect");
                     edPass.requestFocus();
+                    return;
                 }
             }
         });
@@ -98,10 +99,12 @@ public class Login extends AppCompatActivity {
                 }else if(!username.equals(" ") && username.length()<5){
                     edName.setError("Username must be at least 6 letters long");
                     edName.requestFocus();
+                    return;
                 }
                 else {
                     loginDatabaseAdapter.insertEntry(username, password);
                     Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_LONG).show();
+                    return;
                 }
             }
 
