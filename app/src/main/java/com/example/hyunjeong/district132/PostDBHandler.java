@@ -72,7 +72,7 @@ public class PostDBHandler extends SQLiteOpenHelper {
     }
 
     public Cursor searchPost(String location, String housetype, String purpose) {
-        String query = "Select * FROM " + TABLE_POSTS +
+     String query = "Select " + COLUMN_POST_ID+ " AS _id,* FROM "  + TABLE_POSTS +
                 " WHERE " + COLUMN_LOCATION + " = \"" + location + "\"" +
                 " AND " + COLUMN_HOUSETYPE + " = \"" + housetype + "\"" +
                 " AND " + COLUMN_PURPOSE + " = \"" + purpose + "\"";
