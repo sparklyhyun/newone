@@ -55,7 +55,7 @@ public class Login extends AppCompatActivity {
 
                     Intent toSignin = new Intent(Login.this, LoggedIn.class);
                     startActivity(toSignin);
-                }if (username.equals(" ")) {
+                }else if (username.equals(" ")) {
                     edName.setError("Please enter username");
                     edName.requestFocus();
                     return;
@@ -119,12 +119,3 @@ public class Login extends AppCompatActivity {
         loginDatabaseAdapter.close();
     }
 }
-
-
-
-
-
-
-
-
-

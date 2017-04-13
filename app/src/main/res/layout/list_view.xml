@@ -3,7 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:padding="2dp" >
+    android:padding="2dp">
 
     <TextView
         android:id="@+id/postID"
@@ -17,10 +17,9 @@
         android:layout_height="wrap_content"
         android:text="Username"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_marginLeft="31dp"
-        android:layout_marginStart="31dp"
-        android:layout_alignBaseline="@+id/postID"
-        android:layout_alignBottom="@+id/postID"
+        android:layout_marginLeft="38dp"
+        android:layout_marginStart="38dp"
+        android:layout_above="@+id/postPrice"
         android:layout_toRightOf="@+id/postID"
         android:layout_toEndOf="@+id/postID" />
     <TextView
@@ -29,7 +28,7 @@
         android:layout_height="wrap_content"
         android:text="Location"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_below="@+id/postID"
+        android:layout_below="@+id/textView10"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
     <TextView
@@ -38,9 +37,10 @@
         android:layout_height="wrap_content"
         android:text="Price"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="13dp"
         android:layout_below="@+id/postID"
-        android:layout_alignRight="@+id/postUsername"
-        android:layout_alignEnd="@+id/postUsername" />
+        android:layout_alignLeft="@+id/postSize"
+        android:layout_alignStart="@+id/postSize" />
     <TextView
         android:id="@+id/postSize"
         android:layout_width="wrap_content"
@@ -48,11 +48,29 @@
         android:text="Size"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:paddingLeft="10dp"
-        android:layout_marginRight="49dp"
-        android:layout_marginEnd="49dp"
-        android:layout_alignBaseline="@+id/postPrice"
-        android:layout_alignBottom="@+id/postPrice"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignBottom="@+id/textView10"
+        android:layout_alignRight="@+id/postUsername"
+        android:layout_alignEnd="@+id/postUsername"
+        android:layout_marginRight="13dp"
+        android:layout_marginEnd="13dp" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:text="size"
+        android:layout_below="@+id/postPrice"
+        android:layout_toRightOf="@+id/postID"
+        android:layout_toEndOf="@+id/postID" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="price"
+        android:layout_alignTop="@+id/postPrice"
+        android:layout_toRightOf="@+id/postID"
+        android:layout_toEndOf="@+id/postID" />
 
 </RelativeLayout>

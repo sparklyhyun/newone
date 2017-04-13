@@ -72,7 +72,7 @@ public class PostDBHandler extends SQLiteOpenHelper {
     }
 
     public Cursor searchPost(String location, String housetype, String purpose) {
-        String query = "Select * FROM " + TABLE_POSTS +
+     String query = "Select " + COLUMN_POST_ID+ " AS _id,* FROM "  + TABLE_POSTS +
                 " WHERE " + COLUMN_LOCATION + " = \"" + location + "\"" +
                 " AND " + COLUMN_HOUSETYPE + " = \"" + housetype + "\"" +
                 " AND " + COLUMN_PURPOSE + " = \"" + purpose + "\"";
@@ -85,7 +85,7 @@ public class PostDBHandler extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public boolean deletePost(int post_id) {
+    public boolean deletePost(String post_id) {
         boolean result = false;
 
         String query = "Select * FROM " + TABLE_POSTS +
@@ -106,5 +106,20 @@ public class PostDBHandler extends SQLiteOpenHelper {
         }
         db.close();
         return result;
+    }
+    public Cursor getlocbyid(String postid)
+    {
+        String query = "Select * FROM " + TABLE_POSTS +
+                " WHERE " + COLUMN_POST_ID + " =  \"" + postid + "\"";
+        SQLiteDatabase db= this.getWritableDatabase();
+        Cursor cursor= db.rawQuery(query,null);
+        return cursor;
+    }
+    public Cursor getpostbyusername(String username){
+        String query = "Select * FROM " + TABLE_POSTS +
+                " WHERE " + COLUMN_USERNAME + " =  \"" + username + "\"";
+        SQLiteDatabase db= this.getWritableDatabase();
+        Cursor cursor= db.rawQuery(query,null);
+        return cursor;
     }
 }

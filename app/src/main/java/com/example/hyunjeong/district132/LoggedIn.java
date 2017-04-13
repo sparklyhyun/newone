@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -35,6 +36,7 @@ public class LoggedIn extends AppCompatActivity {
         final Spinner hseType = (Spinner) findViewById(R.id.Type);
         final Spinner saleLease = (Spinner) findViewById(R.id.SaleLease);
 
+
         String loc = location.getSelectedItem().toString();
         String hse = hseType.getSelectedItem().toString();
         String slease = saleLease.getSelectedItem().toString();
@@ -42,6 +44,11 @@ public class LoggedIn extends AppCompatActivity {
         HashMap<String, String> user = session.getUserDetails();
         String name = user.get(UserSessionManager.KEY_NAME);
         dUserNAme.setText(Html.fromHtml(name));
+        final String username=""+ dUserNAme.getText();
+
+
+
+
 
 
 
@@ -59,9 +66,19 @@ public class LoggedIn extends AppCompatActivity {
             }
 
         });
+        bviewMyPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent toViewPosts = new Intent(LoggedIn.this, ViewMyPost.class);
+                //Toast.makeText(LoggedIn.this, username, Toast.LENGTH_LONG).show();
+                getIntent().putExtra("user",username);
+                startActivity(toViewPosts);
+            }
+        });
 
 
 
     }
+
 
 }

@@ -8,9 +8,6 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
-/**
- * Created by Liew on 1/4/2017.
- */
 
 public class PostResultCursorAdapter extends CursorAdapter {
     private final LayoutInflater mInflater;

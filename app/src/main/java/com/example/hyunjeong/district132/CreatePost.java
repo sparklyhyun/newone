@@ -1,7 +1,5 @@
 package com.example.hyunjeong.district132;
 
-
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +15,13 @@ import android.content.Intent;
 import java.util.HashMap;
 
 
-public class CreatePost extends AppCompatActivity {
+
+/**
+ * Created by priyankaananathasayanam on 12/4/17.
+ */
+
+public class CreatePost extends AppCompatActivity{
+
     int id, no_of_rooms;
     String username, location, housetype, facilities, desc,address;
     int price, size;
@@ -93,6 +97,4 @@ public class CreatePost extends AppCompatActivity {
     }
 
 }
-//public PostDB(int post_id, String username, String location, String housetype, boolean purpose, double price,
-//int no_of_rooms, boolean furnishing, String facilities, String desc, double size) {
 

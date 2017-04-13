@@ -2,10 +2,6 @@ package com.example.hyunjeong.district132;
 
 import java.util.Random;
 
-/**
- * Created by Jeslyn on 30/3/2017.
- */
-
 public class PostDB {
 
     private int post_id;
@@ -39,7 +35,7 @@ public class PostDB {
         this.size = size;
     }
 
-   public void setPost_id(int post_id) {
+    public void setPost_id(int post_id) {
         this.post_id = generatePostID();
     }
 
