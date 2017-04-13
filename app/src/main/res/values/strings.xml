@@ -54,6 +54,11 @@
         <item>Fully furnished</item>
         <item>Unfurnished</item>
     </string-array>
+    <string-array name="sort">
+        <item>Click here to sort!</item>
+        <item>Sort by size</item>
+        <item>Sort by price</item>
+    </string-array>
 
 
 </resources>

@@ -21,6 +21,12 @@
         <activity android:name=".CreatePost" />
         <activity android:name=".SearchResults" />
         <activity android:name=".ViewMyPost"></activity>
+        <activity android:name=".ImplementSPattern">
+            <intent-filter>
+                <action android:name="com.example.hyunjeong.district132"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".Displaydetails"/>
     </application>
 
 </manifest>
