@@ -26,6 +26,8 @@ public class Displaydetails extends AppCompatActivity {
 
         String str="";
         Button btn=(Button) findViewById(R.id.button3);
+            
+        //Directs user to data.gov.sg website when they click "Click Here to Compare Prices" button
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,10 +39,12 @@ public class Displaydetails extends AppCompatActivity {
             }
         });
 
-
+        //cursor retrieves all database entries according to post ID and displays the results in a list view form
         Cursor cursor = db.getlocbyid(ID);
         if(cursor.moveToFirst()){
             String loc,id,size,price,desc,type,purpose,no_of_rooms,username,furnish;
+                
+            //information retrived from cursor is stored in variables
             loc = cursor.getString(cursor.getColumnIndex("location"));
             id=cursor.getString(cursor.getColumnIndex("post_id"));
             price=cursor.getString(cursor.getColumnIndex("price"));
@@ -62,8 +66,8 @@ public class Displaydetails extends AppCompatActivity {
             TextView furnishtv =(TextView) findViewById(R.id.textView21);
             TextView desctv =(TextView) findViewById(R.id.textView23);
             TextView contacttv =(TextView) findViewById(R.id.textView29);
-
-
+                
+       
             locationtv.setText(loc);
             pricetv.setText(price);
             sizetv.setText(size);
