@@ -3,11 +3,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-
-/**
- * Created by priyankaananathasayanam on 12/4/17.
- */
-
+//Strategy Pattern Context Class
 public class SContext {
     private SortPost spost;
     private Context context;
@@ -26,10 +22,9 @@ public class SContext {
 
     }
     public Cursor executeSort(String loc,String type,String purpose){
-        //c=spost.sort();
         Cursor cursor=spost.sort(loc,type,purpose);
         return cursor;
-        //return spost.sort();
+   
 
     }
 
