@@ -1,10 +1,7 @@
 package com.example.hyunjeong.district132;
 import android.database.Cursor;
 
-/**
- * Created by priyankaananathasayanam on 12/4/17.
- */
-
+//Strategy Pattern Interface
 public interface SortPost {
     static final int DATABASE_VERSION = 1;
     static final String DATABASE_NAME = "PostDB.db";
@@ -26,5 +23,5 @@ public interface SortPost {
     public static final String COLUMN_SIZE = "size";
 
     public Cursor sort(String location,String housetype,String purpose);
-    //public void getValues(String[] array);
+   
 }
