@@ -8,10 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
 
-/**
- * Created by priyankaananathasayanam on 12/4/17.
- */
-
+//Concrete class which implements the SortPost interface (Strategy Pattern)
 public class SortbySize extends SQLiteOpenHelper implements SortPost{
 
     private String location;
@@ -36,11 +33,8 @@ public class SortbySize extends SQLiteOpenHelper implements SortPost{
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-    /* public void getValues(String[] array){
-         location=array[0];
-         housetype=array[1];
-         purpose=array[2];
-     }*/
+ 
+    //Retrieves entries from datbase according to chosen location,housetype and purpose and orders them by size.
     public Cursor sort(String location,String housetype,String purpose){
         String query = "Select " + COLUMN_POST_ID+ " AS _id,* FROM "  + TABLE_POSTS +
                 " WHERE " + COLUMN_LOCATION + " = \"" + location + "\"" +
