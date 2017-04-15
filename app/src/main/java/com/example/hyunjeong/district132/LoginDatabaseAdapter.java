@@ -1,8 +1,4 @@
 package com.example.hyunjeong.district132;
-
-/**
- * Created by Hyun Jeong on 2017-03-31.
- */
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -56,16 +52,16 @@ public class LoginDatabaseAdapter {
     }
     public int deleteEntry(String UserName)
     {
-        //String id=String.valueOf(ID);
+        
         String where="USERNAME=?";
         int numberOFEntriesDeleted= db.delete("LOGIN", where, new String[]{UserName}) ;
-        // Toast.makeText(context, "Number fo Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
+   
         return numberOFEntriesDeleted;
     }
     public String getSingleEntry(String userName)
     {
         Cursor cursor=db.query("LOGIN", null, " USERNAME=?", new String[]{userName}, null, null, null);
-        if(cursor.getCount()<1) // UserName Not Exist
+        if(cursor.getCount()<1) // UserName Does Not Exist
         {
             cursor.close();
             return "NOT EXIST";
