@@ -7,9 +7,6 @@ import android.content.Context;
 import android.content.ContentValues;
 import android.database.Cursor;
 
-/**
- * Created by Jeslyn on 30/3/2017.
- */
 
 public class PostDBHandler extends SQLiteOpenHelper {
 
