@@ -1,5 +1,4 @@
 package com.example.hyunjeong.district132;
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,11 +13,6 @@ import android.widget.EditText;
 import android.content.Intent;
 import java.util.HashMap;
 
-
-
-/**
- * Created by priyankaananathasayanam on 12/4/17.
- */
 
 public class CreatePost extends AppCompatActivity{
 
@@ -41,13 +35,6 @@ public class CreatePost extends AppCompatActivity{
 
 
 
-
-
-
-
-
-
-
         dbHandler = new PostDBHandler(this, null, null, 1);
         Button submit=(Button) findViewById(R.id.submitbtn);
         submit.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +43,6 @@ public class CreatePost extends AppCompatActivity{
 
 
                 //get data from user
-
                 EditText priceinfo,sizeinfo,addrinfo,description;
                 Spinner salerent=(Spinner) findViewById(R.id.purpose);
                 purpose=String.valueOf(salerent.getSelectedItem());
