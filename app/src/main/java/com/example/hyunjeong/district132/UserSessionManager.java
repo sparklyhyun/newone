@@ -1,16 +1,14 @@
 package com.example.hyunjeong.district132;
 
-/**
- * Created by Hyun Jeong on 2017-03-31.
- */
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 import java.util.HashMap;
+
 public class UserSessionManager {
-    // Shared Preferences reference
+  
     SharedPreferences pref;
 
     // Editor reference for Shared preferences
