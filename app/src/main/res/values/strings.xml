@@ -29,10 +29,10 @@
 
     <string name="send">send</string>
     <string-array name="locations">
-        <item>Pasir Ris</item>
-        <item>Tampines</item>
+        <item>Joo Koon</item>
         <item>Jurong West</item>
-        <item>Pioneer</item>
+        <item>Boon Lay</item>
+        <item>Lakeside</item>
     </string-array>
     <string-array name="type">
         <item>HDB</item>
