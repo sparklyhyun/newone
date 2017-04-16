@@ -6,8 +6,9 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 import java.util.HashMap;
+
 public class UserSessionManager {
-    // Shared Preferences reference
+  
     SharedPreferences pref;
 
     // Editor reference for Shared preferences
