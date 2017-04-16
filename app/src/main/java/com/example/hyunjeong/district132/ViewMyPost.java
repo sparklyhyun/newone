@@ -58,26 +58,6 @@ public class ViewMyPost extends AppCompatActivity {
         cursor.close();
 
     }
-       /* final ListView list = (ListView) findViewById(R.id.list);
-        final PostResultCursorAdapter todoAdapter = new PostResultCursorAdapter(this, cursor);
-        list.setAdapter(todoAdapter);
-
-        list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Displaydetails d;
-                String postid = ((TextView) view.findViewById(R.id.postID)).getText().toString();
-                db.deletePost(postid);
-                //  Intent intent = new Intent(ViewMyPost.this, Displaydetails.class);
-                //intent.putExtra("id",postid);
-                //startActivity(intent);
-                //TextView location=(TextView) findViewById(R.id.postUsername);
-                //String loc=location.getText().toString();
-                //Toast.makeText(SearchResults.this, postid, Toast.LENGTH_LONG).show();
-
-
-                return false;
-            }
-        });*/
+      
 }
 
