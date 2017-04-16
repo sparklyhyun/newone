@@ -7,10 +7,6 @@ import android.content.Context;
 import android.content.ContentValues;
 import android.database.Cursor;
 
-/**
- * Created by Jeslyn on 30/3/2017.
- */
-
 public class PostDBHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
@@ -72,16 +68,13 @@ public class PostDBHandler extends SQLiteOpenHelper {
     }
 
     public Cursor searchPost(String location, String housetype, String purpose) {
-     String query = "Select " + COLUMN_POST_ID+ " AS _id,* FROM "  + TABLE_POSTS +
+        String query = "Select " + COLUMN_POST_ID+ " AS _id,* FROM "  + TABLE_POSTS +
                 " WHERE " + COLUMN_LOCATION + " = \"" + location + "\"" +
                 " AND " + COLUMN_HOUSETYPE + " = \"" + housetype + "\"" +
                 " AND " + COLUMN_PURPOSE + " = \"" + purpose + "\"";
 
-        //String query = " SELECT * FROM " + TABLE_POSTS;
         SQLiteDatabase db = this.getWritableDatabase();
-
         Cursor cursor = db.rawQuery(query, null);
-        //DatabaseUtils.dumpCursorToString(cursor);
         return cursor;
     }
 

@@ -1,8 +1,5 @@
 package com.example.hyunjeong.district132;
 
-/**
- * Created by Hyun Jeong on 2017-03-31.
- */
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;

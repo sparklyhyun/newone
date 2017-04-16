@@ -22,9 +22,7 @@ public class SearchResults extends AppCompatActivity {
     String location;
     String type;
     String purpose;
-    //public  String[] stringArray;
-    //Context context;
-    //private Object factory;
+   
 
 
     @Override
@@ -39,16 +37,7 @@ public class SearchResults extends AppCompatActivity {
         location = stringArray[0];
         type = stringArray[1];
         purpose = stringArray[2];
-        // final String[] array={location,type,purpose};
-        //sbs.getValues(stringArray);
-        //sbp.getValues(stringArray);
-
-        //stringArray is not null.
-        //TextView textview=(TextView) findViewById(R.id.textView);
-        //textview.setText(stringArray[0]);
-
-        //Spinner spinner = (Spinner) findViewById(R.id.sortspinner);
-        //String sort = spinner.getSelectedItem().toString();
+      
 
         final Intent intent1;
 
@@ -85,9 +74,6 @@ public class SearchResults extends AppCompatActivity {
 
         Cursor posts = dbHandler.searchPost(location, type, purpose);
 
-    /*String display = DatabaseUtils.dumpCursorToString(posts);
-    TextView textView4 = (TextView) findViewById(R.id.textView8);
-    textView4.setText(display);*/
         // Find ListView to populate
         final ListView list = (ListView) findViewById(R.id.list);
 
